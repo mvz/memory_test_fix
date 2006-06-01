@@ -1,0 +1,8 @@
+MemoryTestFix
+=============
+
+A simple fix to run tests with sqlite. From example at
+
+http://blog.seagul.co.uk/articles/2006/02/08/in-memory-sqlite-database-for-rails-testing
+
+

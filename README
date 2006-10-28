@@ -10,11 +10,20 @@ In your database.yml, use
   test:
     adapter: sqlite3
     database: ":memory:"
-
+  
 It runs much faster!
+
+You can also adjust the verbosity of the output:
+
+test:
+  adapter: sqlite3
+  database: ":memory:"
+  verbosity: silent
 
 == Authors
 
 Chris Roos
 
-adapted by Geoffrey Grosenbach, http://nubyonrails.com
+Adapted by Geoffrey Grosenbach, http://nubyonrails.com
+
+Verbosity patch by Kakutani Shintaro

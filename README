@@ -27,3 +27,7 @@ Chris Roos
 Adapted by Geoffrey Grosenbach, http://nubyonrails.com
 
 Verbosity patch by Kakutani Shintaro
+
+== Changelog
+
+* Updated to use ActiveRecord::ConnectionAdapters::SQLite3Adapter for Rails 1.2

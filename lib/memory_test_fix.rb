@@ -1,7 +1,7 @@
 # MemoryTestFix
 def in_memory_database?
   ENV["RAILS_ENV"] == "test" and
-  ActiveRecord::Base.connection.class == ActiveRecord::ConnectionAdapters::SQLiteAdapter and
+  ActiveRecord::Base.connection.class == ActiveRecord::ConnectionAdapters::SQLite3Adapter and
   Rails::Configuration.new.database_configuration['test']['database'] == ':memory:'
 end
 

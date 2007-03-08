@@ -30,4 +30,6 @@ Verbosity patch by Kakutani Shintaro
 
 == Changelog
 
+* Updated to look for either so it works with Rails 1.2 and also older versions
 * Updated to use ActiveRecord::ConnectionAdapters::SQLite3Adapter for Rails 1.2
+

@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/plugins/!svn/ver/241/memory_test_fix
+END
+Rakefile
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/plugins/!svn/ver/86/memory_test_fix/Rakefile
+END
+init.rb
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/plugins/!svn/ver/86/memory_test_fix/init.rb
+END
+about.yml
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/plugins/!svn/ver/86/memory_test_fix/about.yml
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/plugins/!svn/ver/186/memory_test_fix/README
+END

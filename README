@@ -28,8 +28,11 @@ Adapted by Geoffrey Grosenbach, http://nubyonrails.com
 
 Verbosity patch by Kakutani Shintaro
 
+Adapted as GemPlugin by Matijs van Zuijlen
+
 == Changelog
 
+* Updated to work as a GemPlugin
 * Updated to look for either so it works with Rails 1.2 and also older versions
 * Updated to use ActiveRecord::ConnectionAdapters::SQLite3Adapter for Rails 1.2
 

@@ -2,7 +2,7 @@
 # Update: Looks for the SQLite and SQLite3 adapters for
 # compatibility with Rails 1.2.2 and also older versions.
 def in_memory_database?
-  if ENV["RAILS_ENV"] == "test" and
+  if (ENV["RAILS_ENV"] == "test" || ENV["RAILS_ENV"] == "cucumber") and
     (Rails::Configuration.new.database_configuration['test']['database'] == ':memory:' or
     Rails::Configuration.new.database_configuration['test']['dbfile'] == ':memory:')
     begin

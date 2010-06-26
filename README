@@ -5,7 +5,15 @@ A simple fix to run tests with sqlite. From example at
 
 http://blog.seagul.co.uk/articles/2006/02/08/in-memory-sqlite-database-for-rails-testing
 
-In your database.yml, use
+Install the gem:
+
+  gem install memory_test_fix
+
+In your config/environments.rb, use:
+
+  config.gem 'memory_test_fix'
+
+In your database.yml, use:
 
   test:
     adapter: sqlite3
@@ -15,10 +23,12 @@ It runs much faster!
 
 You can also adjust the verbosity of the output:
 
-test:
-  adapter: sqlite3
-  database: ":memory:"
-  verbosity: silent
+  test:
+    adapter: sqlite3
+    database: ":memory:"
+    verbosity: silent
+
+You can also use this with other (testing) environments, not just 'test'.
 
 == Authors
 
@@ -30,9 +40,11 @@ Verbosity patch by Kakutani Shintaro
 
 Adapted as GemPlugin by Matijs van Zuijlen
 
+Support for environments besides 'test' by Erik Hanson & Matt Scilipoti
+
 == Changelog
 
-* supports environments besides 'test' (cucumber, etc)
+* Supports environments besides 'test' (cucumber, etc)
 * Updated to work as a GemPlugin
 * Updated to look for either so it works with Rails 1.2 and also older versions
 * Updated to use ActiveRecord::ConnectionAdapters::SQLite3Adapter for Rails 1.2

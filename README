@@ -10,7 +10,7 @@ In your database.yml, use
   test:
     adapter: sqlite3
     database: ":memory:"
-  
+
 It runs much faster!
 
 You can also adjust the verbosity of the output:
@@ -32,6 +32,7 @@ Adapted as GemPlugin by Matijs van Zuijlen
 
 == Changelog
 
+* supports environments besides 'test' (cucumber, etc)
 * Updated to work as a GemPlugin
 * Updated to look for either so it works with Rails 1.2 and also older versions
 * Updated to use ActiveRecord::ConnectionAdapters::SQLite3Adapter for Rails 1.2

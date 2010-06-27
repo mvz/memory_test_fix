@@ -29,6 +29,7 @@ Adapted by Geoffrey Grosenbach, http://nubyonrails.com
 Verbosity patch by Kakutani Shintaro
 
 == Changelog
+
 * supports environments besides 'test' (cucumber, etc)
 * Updated to look for either so it works with Rails 1.2 and also older versions
 * Updated to use ActiveRecord::ConnectionAdapters::SQLite3Adapter for Rails 1.2

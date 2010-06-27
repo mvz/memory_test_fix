@@ -12,9 +12,8 @@ def in_memory_database?
         return true
       end
     end
-
-    false
   end
+  false
 end
 
 def verbosity
@@ -28,16 +27,16 @@ end
 if in_memory_database?
   load_schema = lambda {
     load "#{RAILS_ROOT}/db/schema.rb" # use db agnostic schema by default
-  #  ActiveRecord::Migrator.up('db/migrate') # use migrations
+    #  ActiveRecord::Migrator.up('db/migrate') # use migrations
   }
   case verbosity
-    when "silent"
-      silence_stream(STDOUT, &load_schema)
-    when "quiet"
-      inform_using_in_memory
-      silence_stream(STDOUT, &load_schema)
-    else
-      inform_using_in_memory
-      load_schema.call
+  when "silent"
+    silence_stream(STDOUT, &load_schema)
+  when "quiet"
+    inform_using_in_memory
+    silence_stream(STDOUT, &load_schema)
+  else
+    inform_using_in_memory
+    load_schema.call
   end
 end

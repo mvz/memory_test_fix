@@ -1,8 +1,8 @@
 # Update: Looks for the SQLite and SQLite3 adapters for
 # compatibility with Rails 1.2.2 and also older versions.
 def in_memory_database?
-  if (Rails::Configuration.new.database_configuration[Rails.env]['database'] == ':memory:' or
-    Rails::Configuration.new.database_configuration[Rails.env]['dbfile'] == ':memory:')
+  dc = Rails.configuration.database_configuration[Rails.env]
+  if (dc['database'] == ':memory:' or dc['dbfile'] == ':memory:')
     begin
       if ActiveRecord::Base.connection.class == ActiveRecord::ConnectionAdapters::SQLite3Adapter
         return true
@@ -26,7 +26,7 @@ end
 
 if in_memory_database?
   load_schema = lambda {
-    load "#{RAILS_ROOT}/db/schema.rb" # use db agnostic schema by default
+    load "#{Rails.root}/db/schema.rb" # use db agnostic schema by default
     #  ActiveRecord::Migrator.up('db/migrate') # use migrations
   }
   case verbosity

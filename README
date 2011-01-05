@@ -1,7 +1,7 @@
 MemoryTestFix
 =============
 
-A simple fix to run tests with sqlite. From example at
+A simple fix to run your Rails tests with sqlite. From the example at
 
 http://blog.seagul.co.uk/articles/2006/02/08/in-memory-sqlite-database-for-rails-testing
 
@@ -30,6 +30,12 @@ You can also adjust the verbosity of the output:
 
 You can also use this with other (testing) environments, not just 'test'.
 
+== Rails Versions
+
+The gem now uses Rails.env and friends, so will not work with Rails
+versions below 2.3. If you're using an older version of Rails, use the
+0.1.x version of this gem.
+
 == Authors
 
 Chris Roos
@@ -42,10 +48,4 @@ Adapted as GemPlugin by Matijs van Zuijlen
 
 Support for environments besides 'test' by Erik Hanson & Matt Scilipoti
 
-== Changelog
-
-* Supports environments besides 'test' (cucumber, etc)
-* Updated to work as a GemPlugin
-* Updated to look for either so it works with Rails 1.2 and also older versions
-* Updated to use ActiveRecord::ConnectionAdapters::SQLite3Adapter for Rails 1.2
-
+Support for Rails 3 by Greg Weber

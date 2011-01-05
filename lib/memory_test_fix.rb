@@ -1,7 +1,6 @@
 module MemoryTestFix
   def self.in_memory_database?
-    dc = Rails.configuration.database_configuration[Rails.env]
-    if (dc['database'] == ':memory:' or dc['dbfile'] == ':memory:')
+    if (configuration['database'] == ':memory:' or configuration['dbfile'] == ':memory:')
       if ActiveRecord::Base.connection.class == ActiveRecord::ConnectionAdapters::SQLite3Adapter
 	return true
       end
@@ -9,8 +8,12 @@ module MemoryTestFix
     false
   end
 
+  def self.configuration
+    Rails.configuration.database_configuration[Rails.env]
+  end
+
   def self.verbosity
-    Rails::Configuration.new.database_configuration[Rails.env]['verbosity']
+    configuration['verbosity']
   end
 
   def self.inform_using_in_memory

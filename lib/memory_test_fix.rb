@@ -17,7 +17,7 @@ def in_memory_database?
 end
 
 def verbosity
-  Rails::Configuration.new.database_configuration['test']['verbosity']
+  Rails::Configuration.new.database_configuration[Rails.env]['verbosity']
 end
 
 def inform_using_in_memory

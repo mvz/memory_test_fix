@@ -1,16 +1,8 @@
-# Update: Looks for the SQLite and SQLite3 adapters for
-# compatibility with Rails 1.2.2 and also older versions.
 def in_memory_database?
   dc = Rails.configuration.database_configuration[Rails.env]
   if (dc['database'] == ':memory:' or dc['dbfile'] == ':memory:')
-    begin
-      if ActiveRecord::Base.connection.class == ActiveRecord::ConnectionAdapters::SQLite3Adapter
-        return true
-      end
-    rescue NameError => e
-      if ActiveRecord::Base.connection.class == ActiveRecord::ConnectionAdapters::SQLiteAdapter
-        return true
-      end
+    if ActiveRecord::Base.connection.class == ActiveRecord::ConnectionAdapters::SQLite3Adapter
+      return true
     end
   end
   false

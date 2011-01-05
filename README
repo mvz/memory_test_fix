@@ -32,9 +32,9 @@ You can also use this with other (testing) environments, not just 'test'.
 
 == Rails Versions
 
-The gem now uses Rails.env and friends, so will not work with Rails
-versions below 2.3. If you're using an older version of Rails, use the
-0.1.x version of this gem.
+Due to incompatibilities in the loading of gem plugins by Rails, this gem
+only works with Rails 3 starting from version 0.2.0. If you're using an
+older version of Rails, use the 0.1.x version of this gem.
 
 == Authors
 

@@ -53,3 +53,5 @@ Adapted as GemPlugin by Matijs van Zuijlen
 Support for environments besides 'test' by Erik Hanson & Matt Scilipoti
 
 Support for Rails 3 by Greg Weber
+
+Fix for Rails 3.2 by Stephan Zalewski

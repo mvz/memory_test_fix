@@ -43,6 +43,6 @@ module MemoryTestFix
   end
 end
 
-ActiveSupport.on_load(:after_initialize) do
+ActiveSupport.on_load(:before_eager_load) do
   MemoryTestFix.init_schema
 end

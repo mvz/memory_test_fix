@@ -22,15 +22,16 @@ Gem::Specification.new do |s|
 
   s.homepage = "http://wiki.github.com/mvz/memory_test_fix"
   s.require_paths = ["lib"]
-  s.files = ["init.rb",
-             "rails/init.rb",
-             "lib/memory_test_fix.rb",
+  s.files = ["lib/memory_test_fix.rb",
+             "lib/memory_test_fix/railtie.rb",
+             "lib/memory_test_fix/schema_loader.rb",
              "README.md",
              "memory_test_fix.gemspec"]
   s.has_rdoc = true
   s.extra_rdoc_files = ['README.md']
   s.rubygems_version = %q{1.2.0}
 
+  s.add_runtime_dependency('railties', '>= 3.0.0')
   s.add_development_dependency('rake', '~> 10.2')
   s.add_development_dependency('minitest', '~> 5.2')
 end

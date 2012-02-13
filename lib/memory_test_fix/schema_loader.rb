@@ -20,16 +20,28 @@ module MemoryTestFix
       configuration[:verbosity]
     end
 
+    def self.migrate
+      configuration[:migrate] == true
+    end
+
     def self.inform_using_in_memory
       puts "Creating sqlite :memory: database"
     end
 
+    def self.load_schema
+      if migrate
+        lambda {
+          ActiveRecord::Migrator.up('db/migrate') # use migrations
+        }
+      else
+        lambda {
+          load "#{Rails.root}/db/schema.rb" # use db agnostic schema by default
+        }
+      end
+    end
+
     def self.init_schema
       if in_memory_database?
-        load_schema = lambda {
-          load "#{Rails.root}/db/schema.rb" # use db agnostic schema by default
-          #  ActiveRecord::Migrator.up('db/migrate') # use migrations
-        }
         case verbosity
         when "silent"
           silence_stream(STDOUT, &load_schema)

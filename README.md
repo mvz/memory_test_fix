@@ -27,6 +27,15 @@ You can also adjust the verbosity of the output:
       database: ":memory:"
       verbosity: silent
 
+To use rails migrations instead of loading `db/schema.rb`
+
+```yaml
+  test:
+    adapter: sqlite3
+    database: ":memory:"
+    migrate: true
+```
+
 You can also use this with other (testing) environments, not just 'test'.
 
 ## Rails Versions

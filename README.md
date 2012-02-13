@@ -4,21 +4,18 @@ A simple fix to run your Rails tests with sqlite. From the example at
 
 http://blog.seagul.co.uk/articles/2006/02/08/in-memory-sqlite-database-for-rails-testing
 
-Install the gem:
+Add the gem to your bundle by adding
 
 ```ruby
-  gem install memory_test_fix
+  gem 'memory_test_fix'
 ```
 
-In your config/environments.rb, use:
+to your `Gemfile`
 
-```ruby
-  config.gem 'memory_test_fix'
-```
 
 In your database.yml, use:
 
-```ruby
+```yaml
   test:
     adapter: sqlite3
     database: ":memory:"
@@ -28,11 +25,20 @@ It runs much faster!
 
 You can also adjust the verbosity of the output:
 
-```ruby
+```yaml
   test:
     adapter: sqlite3
     database: ":memory:"
     verbosity: silent
+```
+
+To use rails migrations instead of loading `db/schema.rb`
+
+```yaml
+  test:
+    adapter: sqlite3
+    database: ":memory:"
+    migrate: true
 ```
 
 You can also use this with other (testing) environments, not just 'test'.

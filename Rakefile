@@ -12,7 +12,7 @@ Rake::TestTask.new(:test) do |t|
   t.verbose = true
 end
 
-desc 'Generate documentation for the memory_test_fix plugin.'
+desc 'Generate documentation for the memory_test_fix gem.'
 Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
   rdoc.title    = 'MemoryTestFix'

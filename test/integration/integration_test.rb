@@ -8,3 +8,11 @@ describe "A Rails 3.0 app using memory_test_fix" do
     system(*%w(bundle exec rake))
   end
 end
+
+describe "A Rails 3.2 app using memory_test_fix" do
+  it "can run its tests without a real db" do
+    Dir.chdir 'fixtures/rails32_app'
+    system(*%w(bundle update))
+    system(*%w(bundle exec rake))
+  end
+end

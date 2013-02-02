@@ -43,6 +43,10 @@ module MemoryTestFix
   end
 end
 
-ActiveSupport.on_load(:after_initialize) do
+if ActiveSupport.respond_to? :on_load
+  ActiveSupport.on_load(:after_initialize) do
+    MemoryTestFix.init_schema
+  end
+else
   MemoryTestFix.init_schema
 end

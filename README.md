@@ -1,8 +1,9 @@
 # MemoryTestFix
 
-A simple fix to run your Rails tests with sqlite. From the example at
+A simple fix to run your Rails tests with sqlite. From the
+[example by Chris Roos](http://blog.seagul.co.uk/articles/2006/02/08/in-memory-sqlite-database-for-rails-testing).
 
-http://blog.seagul.co.uk/articles/2006/02/08/in-memory-sqlite-database-for-rails-testing
+## Usage
 
 Add the gem to your bundle by adding
 
@@ -36,22 +37,19 @@ You can also use this with other (testing) environments, not just 'test'.
 
 ## Rails Versions
 
-Due to incompatibilities in the loading of gem plugins by Rails, this gem
-only works with Rails 3 starting from version 0.2.0. If you're using an
+This gem is compatible with Rails 3 and Rails 2.3. If you're using an
 older version of Rails, use the 0.1.x version of this gem.
 
 ## Authors
 
-Chris Roos
+MemoryTestFix is maintained by [Matijs van Zuijlen](http://www.matijs.net/)
 
-Adapted by Geoffrey Grosenbach, http://nubyonrails.com
+The following people have contributed to this gem:
 
-Verbosity patch by Kakutani Shintaro
-
-Adapted as GemPlugin by Matijs van Zuijlen
-
-Support for environments besides 'test' by Erik Hanson & Matt Scilipoti
-
-Support for Rails 3 by Greg Weber
-
-Fix for Rails 3.2 by Stephan Zalewski
+* [Original hack](http://chrisroos.co.uk/blog/2006-02-08-in-memory-sqlite-database-for-rails-testing) by Chris Roos
+* Adapted by [Geoffrey Grosenbach](http://nubyonrails.com)
+* Verbosity patch by Kakutani Shintaro
+* Adapted as GemPlugin by Matijs van Zuijlen
+* Support for environments besides 'test' by Erik Hanson & Matt Scilipoti
+* Support for Rails 3 by Greg Weber
+* Fix for Rails 3.2 by Stephan Zalewski

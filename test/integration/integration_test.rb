@@ -15,6 +15,15 @@ def run_tests
   out.must_match(/assume_migrated_upto_version/)
 end
 
+describe "A Rails 2.3 app using memory_test_fix" do
+  it "can run its tests without a real db" do
+    Dir.chdir 'fixtures/rails23_app' do
+      update_bundle
+      run_tests
+    end
+  end
+end
+
 describe "A Rails 3.0 app using memory_test_fix" do
   it "can run its tests without a real db" do
     Dir.chdir 'fixtures/rails30_app' do

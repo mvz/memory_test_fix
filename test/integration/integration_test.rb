@@ -33,6 +33,15 @@ describe "A Rails 3.0 app using memory_test_fix" do
   end
 end
 
+describe "A Rails 3.1 app using memory_test_fix" do
+  it "can run its tests without a real db" do
+    Dir.chdir 'fixtures/rails31_app' do
+      update_bundle
+      run_tests
+    end
+  end
+end
+
 describe "A Rails 3.2 app using memory_test_fix" do
   it "can run its tests without a real db" do
     Dir.chdir 'fixtures/rails32_app' do

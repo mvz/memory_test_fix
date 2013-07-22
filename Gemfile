@@ -1,2 +1,1 @@
-gem 'rake'
-gem 'minitest'
+gemspec

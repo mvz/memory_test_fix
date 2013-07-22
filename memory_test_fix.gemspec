@@ -28,4 +28,7 @@ Gem::Specification.new do |s|
   s.has_rdoc = true
   s.extra_rdoc_files = ['README.md']
   s.rubygems_version = %q{1.2.0}
+
+  s.add_development_dependency('rake')
+  s.add_development_dependency('minitest', '~> 5.0.5')
 end

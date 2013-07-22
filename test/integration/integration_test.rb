@@ -7,8 +7,13 @@ def update_bundle
 end
 
 def run_tests
-  out, _ = capture_subprocess_io do
-    system(*%w(bundle exec rake)).must_equal true
+  result = false
+  out, err = capture_subprocess_io do
+    result = system(*%w(/usr/bin/env BUNDLE_GEMFILE= bundle exec rake))
+  end
+  # If the command failed, make it print any error messages
+  unless result
+    err.must_equal ""
   end
   out.must_match(/Creating sqlite :memory: database/)
   out.must_match(/initialize_schema_migrations_table/)

@@ -1,15 +1,21 @@
 require 'minitest/autorun'
 require 'minitest/spec'
 
+def in_clean_bundler_environment *args
+  system *%w(/usr/bin/env RUBYOPT= BUNDLE_BIN_PATH= BUNDLE_GEMFILE=) + args
+end
+
 def update_bundle
-  system(*%w(bundle update --quiet --local)) || system(*%w(bundle update)) or
-    raise "Unable to initialize test environment"
+  return if in_clean_bundler_environment(*%w(bundle update --quiet --local))
+  puts "Starting remote update of the bundle"
+  return if in_clean_bundler_environment(*%w(bundle update))
+  raise "Unable to initialize test environment"
 end
 
 def run_tests
   result = false
   out, err = capture_subprocess_io do
-    result = system(*%w(/usr/bin/env BUNDLE_GEMFILE= bundle exec rake))
+    result = in_clean_bundler_environment(*%w(bundle exec rake))
   end
   # If the command failed, make it print any error messages
   unless result

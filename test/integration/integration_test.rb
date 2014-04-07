@@ -27,7 +27,6 @@ def run_tests
 end
 
 VERSIONS = [
-  ["Rails 2.3", 'rails23_app'],
   ["Rails 3.0", 'rails30_app'],
   ["Rails 3.1", 'rails31_app'],
   ["Rails 3.2", 'rails32_app']

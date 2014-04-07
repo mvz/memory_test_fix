@@ -37,8 +37,9 @@ You can also use this with other (testing) environments, not just 'test'.
 
 ## Rails Versions
 
-This gem is compatible with Rails 3 and Rails 2.3. If you're using an
-older version of Rails, use the 0.1.x version of this gem.
+This gem is compatible with Rails 4 and Rails 3. If you're using Rails 2.3, use
+version 0.2.2 of this gem. If you're using an even older version of Rails, use
+version 0.1.3.
 
 ## Authors
 

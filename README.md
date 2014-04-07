@@ -7,31 +7,25 @@ A simple fix to run your Rails tests with sqlite. From the
 
 Add the gem to your bundle by adding
 
-```ruby
-  gem 'memory_test_fix'
-```
+    gem 'memory_test_fix'
 
 to your `Gemfile`
 
 
 In your database.yml, use:
 
-```yaml
-  test:
-    adapter: sqlite3
-    database: ":memory:"
-```
+    test:
+      adapter: sqlite3
+      database: ":memory:"
 
 It runs much faster!
 
 You can also adjust the verbosity of the output:
 
-```yaml
-  test:
-    adapter: sqlite3
-    database: ":memory:"
-    verbosity: silent
-```
+    test:
+      adapter: sqlite3
+      database: ":memory:"
+      verbosity: silent
 
 You can also use this with other (testing) environments, not just 'test'.
 

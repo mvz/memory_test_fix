@@ -23,13 +23,13 @@ def run_tests
   end
   out.must_match(/Creating sqlite :memory: database/)
   out.must_match(/initialize_schema_migrations_table/)
-  out.must_match(/assume_migrated_upto_version/)
 end
 
 VERSIONS = [
   ["Rails 3.0", 'rails30_app'],
   ["Rails 3.1", 'rails31_app'],
-  ["Rails 3.2", 'rails32_app']
+  ["Rails 3.2", 'rails32_app'],
+  ["Rails 4.0", 'rails40_app']
 ]
 
 VERSIONS.each do |label, appdir|

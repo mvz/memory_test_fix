@@ -30,5 +30,5 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.2.0}
 
   s.add_development_dependency('rake')
-  s.add_development_dependency('minitest', '~> 5.0.5')
+  s.add_development_dependency('minitest', '~> 5.2')
 end

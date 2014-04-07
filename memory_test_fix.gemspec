@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = "memory_test_fix"
-  s.version = "0.2.2"
+  s.version = "1.0.0"
 
   if s.respond_to? :required_rubygems_version=
     s.required_rubygems_version = Gem::Requirement.new(">= 0")
@@ -14,6 +14,8 @@ Gem::Specification.new do |s|
                 "Greg Weber",
                 "Stephan Zalewski" ]
   s.email = "matijs@matijs.net"
+
+  s.license = 'MIT'
 
   s.summary = "Use SQLite3 in-memory database for Rails tests."
   s.description = "Makes use of SQLite3 in-memory database possible for your Rails tests by preloading the schema."
@@ -29,6 +31,6 @@ Gem::Specification.new do |s|
   s.extra_rdoc_files = ['README.md']
   s.rubygems_version = %q{1.2.0}
 
-  s.add_development_dependency('rake')
+  s.add_development_dependency('rake', '~> 10.2')
   s.add_development_dependency('minitest', '~> 5.2')
 end

@@ -52,14 +52,19 @@ version 0.1.3.
 
 ## Authors
 
+The [original
+hack](http://chrisroos.co.uk/blog/2006-02-08-in-memory-sqlite-database-for-rails-testing)
+this gem is based on was created by Chris Roos.
+
+The hack was adapted as a Rails plugin by [Geoffrey
+Grosenbach](http://nubyonrails.com).
+
+The following people have contributed:
+
+* Kakutani Shintaro
+* Matijs van Zuijlen
+* Erik Hanson & Matt Scilipoti
+* Greg Weber
+* Stephan Zalewski
+
 MemoryTestFix is maintained by [Matijs van Zuijlen](http://www.matijs.net/)
-
-The following people have contributed to this gem:
-
-* [Original hack](http://chrisroos.co.uk/blog/2006-02-08-in-memory-sqlite-database-for-rails-testing) by Chris Roos
-* Adapted by [Geoffrey Grosenbach](http://nubyonrails.com)
-* Verbosity patch by Kakutani Shintaro
-* Adapted as GemPlugin by Matijs van Zuijlen
-* Support for environments besides 'test' by Erik Hanson & Matt Scilipoti
-* Support for Rails 3 by Greg Weber
-* Fix for Rails 3.2 by Stephan Zalewski

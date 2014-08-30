@@ -21,8 +21,46 @@ def run_tests
   unless result
     err.must_equal ""
   end
-  out.must_match(/Creating sqlite :memory: database/)
-  out.must_match(/initialize_schema_migrations_table/)
+  out
+end
+
+def create_db_config_without_migrations
+  File.open 'config/database.yml', 'w' do |f|
+    f.puts <<-END
+default: &default
+  adapter: sqlite3
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *default
+  database: db/development.sqlite3
+
+test:
+  <<: *default
+  database: ":memory:"
+    END
+  end
+end
+
+def create_db_config_with_migrations
+  File.open 'config/database.yml', 'w' do |f|
+    f.puts <<-END
+default: &default
+  adapter: sqlite3
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *default
+  database: db/development.sqlite3
+
+test:
+  <<: *default
+  database: ":memory:"
+  migrate: true
+    END
+  end
 end
 
 VERSIONS = [
@@ -34,11 +72,25 @@ VERSIONS = [
 ]
 
 VERSIONS.each do |label, appdir|
+  Dir.chdir "fixtures/#{appdir}" do
+    update_bundle label
+  end
+
   describe "A #{label} app using memory_test_fix" do
     it "can run its tests without a real db" do
       Dir.chdir "fixtures/#{appdir}" do
-        update_bundle label
-        run_tests
+        create_db_config_without_migrations
+        out = run_tests
+        out.must_match(/Creating sqlite :memory: database/)
+        out.must_match(/initialize_schema_migrations_table/)
+      end
+    end
+
+    it "can run its tests in-memory with migrations" do
+      Dir.chdir "fixtures/#{appdir}" do
+        create_db_config_with_migrations
+        out = run_tests
+        out.must_match(/Creating sqlite :memory: database/)
       end
     end
   end

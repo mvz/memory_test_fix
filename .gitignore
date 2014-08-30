@@ -4,3 +4,4 @@ Gemfile.lock
 fixtures/rails*_app/Gemfile.lock
 fixtures/rails*_app/db/*.sqlite3
 fixtures/rails*_app/log/*.log
+fixtures/rails*_app/config/database.yml

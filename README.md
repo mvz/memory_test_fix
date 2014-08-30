@@ -3,6 +3,12 @@
 A simple fix to run your Rails tests with sqlite. From the
 [example by Chris Roos](http://blog.seagul.co.uk/articles/2006/02/08/in-memory-sqlite-database-for-rails-testing).
 
+## Status
+
+[![Dependency Status](https://gemnasium.com/mvz/memory_test_fix.png)](https://gemnasium.com/mvz/memory_test_fix)
+[![Build Status](https://travis-ci.org/mvz/memory_test_fix.png?branch=master)](https://travis-ci.org/mvz/memory_test_fix)
+[![Code Climate](https://codeclimate.com/github/mvz/memory_test_fix.png)](https://codeclimate.com/github/mvz/memory_test_fix)
+
 ## Usage
 
 Add the gem to your bundle by adding

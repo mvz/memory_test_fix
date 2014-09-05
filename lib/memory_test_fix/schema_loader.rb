@@ -13,7 +13,7 @@ module MemoryTestFix
     end
 
     def self.configuration
-      Rails.configuration.database_configuration[Rails.env].with_indifferent_access
+      ActiveRecord::Base.connection_config
     end
 
     def self.verbosity

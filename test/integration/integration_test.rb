@@ -1,5 +1,4 @@
-require 'minitest/autorun'
-require 'minitest/spec'
+require 'test_helper'
 
 def in_clean_bundler_environment *args
   system(*%w(/usr/bin/env RUBYOPT= BUNDLE_BIN_PATH= BUNDLE_GEMFILE=) + args)

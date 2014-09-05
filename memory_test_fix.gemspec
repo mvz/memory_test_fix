@@ -6,19 +6,21 @@ Gem::Specification.new do |s|
     s.required_rubygems_version = Gem::Requirement.new(">= 0")
   end
 
-  s.authors = [ "Matijs van Zuijlen",
-                "Chris Roos",
-                "Geoffrey Grosenbach",
-                "Kakutani Shintaro",
-                "Erik Hanson and Matt Scilipoti",
-                "Greg Weber",
-                "Stephan Zalewski" ]
+  s.authors = ["Matijs van Zuijlen",
+               "Chris Roos",
+               "Geoffrey Grosenbach",
+               "Kakutani Shintaro",
+               "Erik Hanson and Matt Scilipoti",
+               "Greg Weber",
+               "Stephan Zalewski"]
   s.email = "matijs@matijs.net"
 
   s.license = 'MIT'
 
   s.summary = "Use SQLite3 in-memory database for Rails tests."
-  s.description = "Makes use of SQLite3 in-memory database possible for your Rails tests by preloading the schema."
+  s.description =
+    "Makes use of SQLite3 in-memory database possible for your" \
+    " Rails tests by preloading the schema."
 
   s.homepage = "http://wiki.github.com/mvz/memory_test_fix"
   s.require_paths = ["lib"]
@@ -29,7 +31,7 @@ Gem::Specification.new do |s|
              "memory_test_fix.gemspec"]
   s.has_rdoc = true
   s.extra_rdoc_files = ['README.md']
-  s.rubygems_version = %q{1.2.0}
+  s.rubygems_version = '1.2.0'
 
   s.add_runtime_dependency('railties', '>= 3.0.0')
   s.add_development_dependency('rake', '~> 10.2')

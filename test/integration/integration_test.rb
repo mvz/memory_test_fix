@@ -2,7 +2,7 @@ require 'minitest/autorun'
 require 'minitest/spec'
 
 def in_clean_bundler_environment *args
-  system *%w(/usr/bin/env RUBYOPT= BUNDLE_BIN_PATH= BUNDLE_GEMFILE=) + args
+  system(*%w(/usr/bin/env RUBYOPT= BUNDLE_BIN_PATH= BUNDLE_GEMFILE=) + args)
 end
 
 def update_bundle label
@@ -18,9 +18,7 @@ def run_tests
     result = in_clean_bundler_environment(*%w(bundle exec rake))
   end
   # If the command failed, make it print any error messages
-  unless result
-    err.must_equal ""
-  end
+  err.must_equal "" unless result
   out
 end
 

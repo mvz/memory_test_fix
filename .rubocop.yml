@@ -1,0 +1,20 @@
+AllCops:
+  Exclude:
+    - 'fixtures/**/*'
+
+# Prefer no parentheses in method definitions
+Style/MethodDefParentheses:
+  EnforcedStyle: require_no_parentheses
+
+# Always use raise to raise exceptions
+Style/SignalException:
+  EnforcedStyle: only_raise
+
+# Allow non-interpolated strings with double quotes
+Style/StringLiterals:
+  Enabled: false
+
+# Allow semantic choice of trailing comma
+Style/TrailingComma:
+  Enabled: false
+

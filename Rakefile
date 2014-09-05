@@ -3,7 +3,7 @@ require 'rake/testtask'
 require 'rdoc/task'
 
 desc 'Default: run unit tests.'
-task :default => :test
+task default: :test
 
 desc 'Test the memory_test_fix plugin.'
 Rake::TestTask.new(:test) do |t|

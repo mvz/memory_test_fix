@@ -1,4 +1,5 @@
 module MemoryTestFix
+  # Load database scheme into in-memory database.
   module SchemaLoader
     def self.in_memory_database?
       in_memory? && sqlite3?
@@ -9,7 +10,7 @@ module MemoryTestFix
     end
 
     def self.sqlite3?
-       configuration[:adapter] == 'sqlite3'
+      configuration[:adapter] == 'sqlite3'
     end
 
     def self.configuration
@@ -30,13 +31,9 @@ module MemoryTestFix
 
     def self.load_schema
       if migrate
-        lambda {
-          ActiveRecord::Migrator.up('db/migrate') # use migrations
-        }
+        -> { ActiveRecord::Migrator.up('db/migrate') }
       else
-        lambda {
-          load "#{Rails.root}/db/schema.rb" # use db agnostic schema by default
-        }
+        -> { load "#{Rails.root}/db/schema.rb" }
       end
     end
 

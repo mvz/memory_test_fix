@@ -5,7 +5,7 @@ if defined?(Rails)
 
   if Rails.version =~ /^4\.0\./
     ActiveRecord::Base.class_eval do
-      def self.establish_connection(*_)
+      def self.establish_connection *_
         super.tap do
           MemoryTestFix::SchemaLoader.init_schema
         end

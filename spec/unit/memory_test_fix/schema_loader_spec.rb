@@ -6,10 +6,8 @@ RSpec.describe MemoryTestFix::SchemaLoader do
   describe '#init_schema' do
     let(:migrator) { double(:migrator) }
     let(:loader) { double(:loader) }
-
-    let(:schema_loader) { MemoryTestFix::SchemaLoader.new(configuration: config,
-                                                          migrator: migrator,
-                                                          loader: loader) }
+    let(:options) { { configuration: config, migrator: migrator, loader: loader } }
+    let(:schema_loader) { MemoryTestFix::SchemaLoader.new options }
 
     before do
       allow(loader).to receive(:load_schema)
@@ -29,26 +27,24 @@ RSpec.describe MemoryTestFix::SchemaLoader do
     end
 
     context 'when an in-memory database is configured' do
-      let(:config) { { database: ':memory:', adapter: 'sqlite3' } }
+      let(:base_config) { { database: ':memory:', adapter: 'sqlite3' } }
+      let(:config) { base_config }
 
-      context "with regular verbosity" do
-        it "informs the user it is creating an in-memory database" do
-          expect { schema_loader.init_schema }.
-            to output("Creating sqlite :memory: database\n").to_stdout
-        end
+      it "informs the user it is creating an in-memory database" do
+        expect { schema_loader.init_schema }.
+          to output("Creating sqlite :memory: database\n").to_stdout
       end
 
-      context "silence" do
-        let(:config) { { database: ':memory:', adapter: 'sqlite3', verbosity: 'silent' } }
+      it "tells the loader to load the schema" do
+        silence_stream(STDOUT) { schema_loader.init_schema }
+        expect(loader).to have_received :load_schema
+      end
+
+      context "when running in silence" do
+        let(:config) { base_config.merge(verbosity: 'silent') }
 
         it "outputs nothing" do
-          expect { schema_loader.init_schema }.
-            to_not output.to_stdout
-        end
-
-        it "tells the loader to load the schema" do
-          schema_loader.init_schema
-          expect(loader).to have_received :load_schema
+          expect { schema_loader.init_schema }.to_not output.to_stdout
         end
       end
     end

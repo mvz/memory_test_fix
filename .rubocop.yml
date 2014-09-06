@@ -2,6 +2,14 @@ AllCops:
   Exclude:
     - 'fixtures/**/*'
 
+# Dot at end of line makes it clearer that the line is not done
+Style/DotPosition:
+  EnforcedStyle: trailing
+
+# Require lines to fit in pull requests.
+Style/LineLength:
+  Max: 92
+
 # Prefer parentheses in method definitions
 Style/MethodDefParentheses:
   EnforcedStyle: require_parentheses

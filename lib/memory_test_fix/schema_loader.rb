@@ -17,13 +17,13 @@ module MemoryTestFix
     end
 
     def init_schema
-      if in_memory_database?
-        inform_using_in_memory unless silent?
-        if noisy?
-          load_schema.call
-        else
-          silence_stream(STDOUT, &load_schema)
-        end
+      return unless in_memory_database?
+
+      inform_using_in_memory unless silent?
+      if noisy?
+        load_schema.call
+      else
+        silence_stream(STDOUT, &load_schema)
       end
     end
 

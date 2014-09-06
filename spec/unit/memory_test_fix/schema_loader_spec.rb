@@ -14,7 +14,6 @@ end
 
 module Rails
   def self.root
-
   end
 end
 
@@ -60,4 +59,3 @@ RSpec.describe MemoryTestFix::SchemaLoader do
     end
   end
 end
-

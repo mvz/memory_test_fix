@@ -1,7 +1,8 @@
+require 'memory_test_fix/schema_file_loader'
 require 'active_support/core_ext/kernel/reporting'
 
 module MemoryTestFix
-  # Load database scheme into in-memory database.
+  # Set up database schema into in-memory database.
   class SchemaLoader
     def self.init_schema
       new.init_schema
@@ -10,7 +11,7 @@ module MemoryTestFix
     def initialize(options = {})
       @configuration = options[:configuration] || ActiveRecord::Base.connection_config
       @migrator = options[:migrator] || ActiveRecord::Migrator
-      @loader = options[:loader] || ActiveRecord::Tasks::DatabaseTasks
+      @loader = options[:loader] || SchemaFileLoader
     end
 
     def init_schema

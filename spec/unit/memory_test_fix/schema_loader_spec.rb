@@ -2,11 +2,6 @@ require 'spec_helper'
 
 require 'memory_test_fix/schema_loader'
 
-module Rails
-  def self.root
-  end
-end
-
 RSpec.describe MemoryTestFix::SchemaLoader do
   describe '#init_schema' do
     let(:migrator) { double(:migrator) }

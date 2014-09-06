@@ -1,4 +1,4 @@
-require 'memory_test_fix/schema_loader'
+require 'memory_test_fix/schema_initializer'
 
 if defined?(Rails)
   require 'memory_test_fix/railtie.rb'

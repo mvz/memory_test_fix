@@ -1,5 +1,4 @@
 require 'active_support/core_ext/kernel/reporting'
-require 'active_record'
 
 module MemoryTestFix
   # Load database scheme into in-memory database.
@@ -8,12 +7,10 @@ module MemoryTestFix
       new.init_schema
     end
 
-    def initialize(configuration = ActiveRecord::Base.connection_config,
-                   migrator = ActiveRecord::Migrator,
-                   loader = Kernel)
-      @configuration = configuration
-      @migrator = migrator
-      @loader = loader
+    def initialize(options = {})
+      @configuration = options[:configuration] || ActiveRecord::Base.connection_config
+      @migrator = options[:migrator] || ActiveRecord::Migrator
+      @loader = options[:loader] || ActiveRecord::Tasks::DatabaseTasks
     end
 
     def init_schema
@@ -66,7 +63,7 @@ module MemoryTestFix
       if migrate
         @migrator.up('db/migrate')
       else
-        @loader.load "#{Rails.root}/db/schema.rb"
+        @loader.load_schema
       end
     end
 

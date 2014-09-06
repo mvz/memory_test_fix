@@ -18,15 +18,11 @@ module MemoryTestFix
 
     def init_schema
       if in_memory_database?
-        case verbosity
-        when "silent"
-          silence_stream(STDOUT, &load_schema)
-        when "quiet"
-          inform_using_in_memory
-          silence_stream(STDOUT, &load_schema)
-        else
-          inform_using_in_memory
+        inform_using_in_memory unless silent?
+        if noisy?
           load_schema.call
+        else
+          silence_stream(STDOUT, &load_schema)
         end
       end
     end
@@ -47,6 +43,18 @@ module MemoryTestFix
 
     def verbosity
       @configuration[:verbosity]
+    end
+
+    def silent?
+      verbosity == "silent"
+    end
+
+    def quiet?
+      verbosity == "quiet"
+    end
+
+    def noisy?
+      !silent? && !quiet?
     end
 
     def migrate

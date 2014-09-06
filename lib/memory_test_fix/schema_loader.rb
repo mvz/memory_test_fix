@@ -20,10 +20,11 @@ module MemoryTestFix
       return unless in_memory_database?
 
       inform_using_in_memory unless silent?
-      if noisy?
-        load_schema.call
+
+      if silent? || quiet?
+        load_schema_silently
       else
-        silence_stream(STDOUT, &load_schema)
+        load_schema
       end
     end
 
@@ -53,10 +54,6 @@ module MemoryTestFix
       verbosity == "quiet"
     end
 
-    def noisy?
-      !silent? && !quiet?
-    end
-
     def migrate
       @configuration[:migrate] == true
     end
@@ -67,9 +64,15 @@ module MemoryTestFix
 
     def load_schema
       if migrate
-        -> { @migrator.up('db/migrate') }
+        @migrator.up('db/migrate')
       else
-        -> { @loader.load "#{Rails.root}/db/schema.rb" }
+        @loader.load "#{Rails.root}/db/schema.rb"
+      end
+    end
+
+    def load_schema_silently
+      silence_stream STDOUT do
+        load_schema
       end
     end
   end

@@ -33,7 +33,7 @@ module MemoryTestFix
       if migrate
         -> { ActiveRecord::Migrator.up('db/migrate') }
       else
-        -> { load "#{Rails.root}/db/schema.rb" }
+        -> { Kernel.load "#{Rails.root}/db/schema.rb" }
       end
     end
 

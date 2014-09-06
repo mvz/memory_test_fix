@@ -1,8 +1,9 @@
 require 'rake'
 require 'rake/testtask'
 require 'rdoc/task'
+require 'rspec/core/rake_task'
 
-desc 'Default: run unit tests.'
+desc 'Default: run tests.'
 task default: :test
 
 namespace :test do
@@ -11,13 +12,9 @@ namespace :test do
     t.pattern = 'test/integration/**/*_test.rb'
     t.verbose = true
   end
-
-  Rake::TestTask.new(:unit) do |t|
-    t.libs << 'test'
-    t.pattern = 'test/unit/**/*_test.rb'
-    t.verbose = true
-  end
 end
+
+RSpec::Core::RakeTask.new(:spec)
 
 desc 'Generate documentation for the memory_test_fix gem.'
 Rake::RDocTask.new(:rdoc) do |rdoc|
@@ -29,4 +26,4 @@ Rake::RDocTask.new(:rdoc) do |rdoc|
 end
 
 desc 'Test the memory_test_fix plugin.'
-task test: ['test:unit', 'test:integration']
+task test: [:spec, 'test:integration']

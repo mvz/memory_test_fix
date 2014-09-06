@@ -1,4 +1,5 @@
 require 'test_helper'
+require 'yaml'
 
 def in_clean_bundler_environment(*args)
   system(*%w(/usr/bin/env RUBYOPT= BUNDLE_BIN_PATH= BUNDLE_GEMFILE=) + args)
@@ -21,42 +22,28 @@ def run_tests
   out
 end
 
+BASE_CONFIG = {
+  "development" =>  {
+    "adapter" =>  'sqlite3',
+    "pool" =>  5,
+    "timeout" =>  5000,
+    "database" =>  'db/development.sqlite3'
+  },
+  "test" =>  {
+    "adapter" =>  'sqlite3',
+    "database" =>  ':memory:'
+  }
+}
+
 def create_db_config_without_migrations
   File.open 'config/database.yml', 'w' do |f|
-    f.puts <<-END
-default: &default
-  adapter: sqlite3
-  pool: 5
-  timeout: 5000
-
-development:
-  <<: *default
-  database: db/development.sqlite3
-
-test:
-  <<: *default
-  database: ":memory:"
-    END
+    f.puts YAML.dump(BASE_CONFIG)
   end
 end
 
 def create_db_config_with_migrations
   File.open 'config/database.yml', 'w' do |f|
-    f.puts <<-END
-default: &default
-  adapter: sqlite3
-  pool: 5
-  timeout: 5000
-
-development:
-  <<: *default
-  database: db/development.sqlite3
-
-test:
-  <<: *default
-  database: ":memory:"
-  migrate: true
-    END
+    f.puts YAML.dump BASE_CONFIG.merge(test: { migrate: true })
   end
 end
 

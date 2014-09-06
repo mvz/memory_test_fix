@@ -26,19 +26,36 @@ describe MemoryTestFix::SchemaLoader do
       allow(Kernel).to receive(:load)
     end
 
-    describe 'when no in-memory database is configured' do
+    context 'when no in-memory database is configured' do
       let(:config) { { database: 'some/file.sqlite3', adapter: 'sqlite3' } }
 
-      it "works" do
+      it "outputs nothing" do
+        expect { MemoryTestFix::SchemaLoader.init_schema }.to_not output.to_stdout
+      end
+
+      it "does not load anything" do
         MemoryTestFix::SchemaLoader.init_schema
+        expect(Kernel).to_not have_received :load
       end
     end
 
-    describe 'when an in-memory database is configured' do
+    context 'when an in-memory database is configured' do
       let(:config) { { database: ':memory:', adapter: 'sqlite3' } }
 
-      it "works" do
-        MemoryTestFix::SchemaLoader.init_schema
+      context "with regular verbosity" do
+        it "informs the user it is creating an in-memory database" do
+          expect { MemoryTestFix::SchemaLoader.init_schema }.
+            to output("Creating sqlite :memory: database\n").to_stdout
+        end
+      end
+
+      context "silence" do
+        let(:config) { { database: ':memory:', adapter: 'sqlite3', verbosity: 'silent' } }
+
+        it "outputs nothing" do
+          expect { MemoryTestFix::SchemaLoader.init_schema }.
+            to_not output.to_stdout
+        end
       end
     end
   end

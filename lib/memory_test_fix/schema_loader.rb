@@ -1,3 +1,5 @@
+require 'active_support/core_ext/kernel/reporting'
+
 module MemoryTestFix
   # Load database scheme into in-memory database.
   module SchemaLoader

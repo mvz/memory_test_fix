@@ -1,10 +1,10 @@
 require 'test_helper'
 
-def in_clean_bundler_environment *args
+def in_clean_bundler_environment(*args)
   system(*%w(/usr/bin/env RUBYOPT= BUNDLE_BIN_PATH= BUNDLE_GEMFILE=) + args)
 end
 
-def update_bundle label
+def update_bundle(label)
   return if in_clean_bundler_environment(*%w(bundle update --quiet --local))
   puts "Starting remote update of the bundle for #{label}"
   return if in_clean_bundler_environment(*%w(bundle update))

@@ -2,9 +2,9 @@ AllCops:
   Exclude:
     - 'fixtures/**/*'
 
-# Prefer no parentheses in method definitions
+# Prefer parentheses in method definitions
 Style/MethodDefParentheses:
-  EnforcedStyle: require_no_parentheses
+  EnforcedStyle: require_parentheses
 
 # Always use raise to raise exceptions
 Style/SignalException:

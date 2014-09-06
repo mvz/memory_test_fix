@@ -11,6 +11,7 @@ RSpec.describe MemoryTestFix::SchemaLoader do
 
     before do
       allow(loader).to receive(:load_schema)
+      allow(migrator).to receive(:up)
     end
 
     context 'when no in-memory database is configured' do
@@ -38,6 +39,15 @@ RSpec.describe MemoryTestFix::SchemaLoader do
       it "tells the loader to load the schema" do
         silence_stream(STDOUT) { schema_loader.init_schema }
         expect(loader).to have_received :load_schema
+      end
+
+      context "when configured to use migrations" do
+        let(:config) { base_config.merge(migrate: true) }
+
+        it "tells the migrator to run the migrations" do
+          silence_stream(STDOUT) { schema_loader.init_schema }
+          expect(migrator).to have_received :up
+        end
       end
 
       context "when running in silence" do

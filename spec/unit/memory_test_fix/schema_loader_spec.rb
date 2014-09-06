@@ -18,7 +18,7 @@ module Rails
   end
 end
 
-describe MemoryTestFix::SchemaLoader do
+RSpec.describe MemoryTestFix::SchemaLoader do
   describe '.init_schema' do
     before do
       allow(ActiveRecord::Base).to receive(:connection_config).and_return config

@@ -1,6 +1,5 @@
 require 'rake'
 require 'rake/testtask'
-require 'rdoc/task'
 require 'rspec/core/rake_task'
 
 desc 'Default: run tests.'
@@ -15,15 +14,6 @@ namespace :test do
 end
 
 RSpec::Core::RakeTask.new(:spec)
-
-desc 'Generate documentation for the memory_test_fix gem.'
-Rake::RDocTask.new(:rdoc) do |rdoc|
-  rdoc.rdoc_dir = 'rdoc'
-  rdoc.title    = 'MemoryTestFix'
-  rdoc.options << '--line-numbers' << '--inline-source'
-  rdoc.rdoc_files.include('README')
-  rdoc.rdoc_files.include('lib/**/*.rb')
-end
 
 desc 'Test the memory_test_fix plugin.'
 task test: [:spec, 'test:integration']

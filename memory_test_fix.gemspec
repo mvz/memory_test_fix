@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name = "memory_test_fix"
-  spec.version = "1.2.0"
+  spec.version = "1.2.1"
 
   spec.authors = ["Matijs van Zuijlen",
                   "Chris Roos",

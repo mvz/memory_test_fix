@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.1 / 2014-09-07
+
+* Ensure all files are available in the gem
+
 ## 1.2.0 / 2014-09-07
 
 * Drop support for Rails 3.0 and 3.1

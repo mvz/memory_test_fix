@@ -1,41 +1,37 @@
-Gem::Specification.new do |s|
-  s.name = "memory_test_fix"
-  s.version = "1.2.0"
+Gem::Specification.new do |spec|
+  spec.name = "memory_test_fix"
+  spec.version = "1.2.0"
 
-  if s.respond_to? :required_rubygems_version=
-    s.required_rubygems_version = Gem::Requirement.new(">= 0")
-  end
+  spec.authors = ["Matijs van Zuijlen",
+                  "Chris Roos",
+                  "Geoffrey Grosenbach",
+                  "Kakutani Shintaro",
+                  "Erik Hanson and Matt Scilipoti",
+                  "Greg Weber",
+                  "Stephan Zalewski"]
+  spec.email = "matijs@matijs.net"
+  spec.homepage = "http://wiki.github.com/mvz/memory_test_fix"
 
-  s.authors = ["Matijs van Zuijlen",
-               "Chris Roos",
-               "Geoffrey Grosenbach",
-               "Kakutani Shintaro",
-               "Erik Hanson and Matt Scilipoti",
-               "Greg Weber",
-               "Stephan Zalewski"]
-  s.email = "matijs@matijs.net"
+  spec.license = "MIT"
 
-  s.license = 'MIT'
+  spec.summary = "Use SQLite3 in-memory database for Rails tests."
+  spec.description = <<-END
+    Makes use of SQLite3 in-memory database possible for your
+    Rails tests by preloading the schema.
+  END
 
-  s.summary = "Use SQLite3 in-memory database for Rails tests."
-  s.description =
-    "Makes use of SQLite3 in-memory database possible for your" \
-    " Rails tests by preloading the schema."
+  spec.files = Dir["{lib,test,spec,fixtures}/**/*",
+                   "*.md",
+                   "*.gemspec",
+                   "Rakefile",
+                   "Gemfile"] & `git ls-files -z`.split("\0")
 
-  s.homepage = "http://wiki.github.com/mvz/memory_test_fix"
-  s.require_paths = ["lib"]
-  s.files = ["lib/memory_test_fix.rb",
-             "lib/memory_test_fix/railtie.rb",
-             "lib/memory_test_fix/schema_loader.rb",
-             "README.md",
-             "memory_test_fix.gemspec"]
-  s.has_rdoc = true
-  s.extra_rdoc_files = ['README.md']
-  s.rubygems_version = '1.2.0'
+  spec.rdoc_options = ["--main", "README.md"]
+  spec.extra_rdoc_files = ["README.md"]
 
-  s.add_runtime_dependency('railties', '>= 3.0.0')
-  s.add_runtime_dependency('activerecord', '>= 3.0.0')
-  s.add_development_dependency('rake', '~> 10.2')
-  s.add_development_dependency('minitest', '~> 5.2')
-  s.add_development_dependency('rspec', '~> 3.1.0')
+  spec.add_runtime_dependency("railties", ">= 3.0.0")
+  spec.add_runtime_dependency("activerecord", ">= 3.0.0")
+  spec.add_development_dependency("rake", "~> 10.2")
+  spec.add_development_dependency("minitest", "~> 5.2")
+  spec.add_development_dependency("rspec", "~> 3.1.0")
 end

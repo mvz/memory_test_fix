@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.0 / 2014-09-07
+
+* Drop support for Rails 3.0 and 3.1
+
 ## 1.1.0 / 2014-08-30
 
 * Officially add support for Rails 4.1

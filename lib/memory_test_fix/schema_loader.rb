@@ -4,16 +4,27 @@ require 'active_support/core_ext/kernel/reporting'
 module MemoryTestFix
   # Set up database schema into in-memory database.
   class SchemaLoader
+    # Initialize the schema for an in-memory database, if it is configured. See
+    # the README for details on how to configure Rails to use an in-memory
+    # database.
     def self.init_schema
       new.init_schema
     end
 
+    # @param [Hash] options The options to configure this instance of SchemaLoader with.
+    # @option options [Hash] :configuration The configuration of the database connection
+    # @option options :migrator The migrator to use if configured to use migrations
+    # @option options :loader The loader to use if configured to not use migrations
+    # @api private
     def initialize(options = {})
       @configuration = options[:configuration] || ActiveRecord::Base.connection_config
       @migrator = options[:migrator] || ActiveRecord::Migrator
       @loader = options[:loader] || SchemaFileLoader
     end
 
+    # Initialize the schema for the in-memoray database according to the
+    # configuration passed to the constructor.
+    # @api private
     def init_schema
       return unless in_memory_database?
 

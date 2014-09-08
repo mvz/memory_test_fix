@@ -35,12 +35,10 @@ You can also adjust the verbosity of the output:
 
 To use rails migrations instead of loading `db/schema.rb`
 
-```yaml
-  test:
-    adapter: sqlite3
-    database: ":memory:"
-    migrate: true
-```
+    test:
+      adapter: sqlite3
+      database: ":memory:"
+      migrate: true
 
 You can also use this with other (testing) environments, not just 'test'.
 

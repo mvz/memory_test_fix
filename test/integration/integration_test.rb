@@ -51,6 +51,7 @@ VERSIONS = [
   ["Rails 3.2", 'rails32_app'],
   ["Rails 4.0", 'rails40_app'],
   ["Rails 4.1", 'rails41_app'],
+  ["Rails 4.2", 'rails42_app'],
 ]
 
 VERSIONS.each do |label, appdir|

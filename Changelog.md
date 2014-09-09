@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.2 / 2014-09-09
+
+* Make dependency declaration match set of supported Rails versions
+* Document public API
+* Add integration test for upcoming Rails 4.2
+
 ## 1.2.1 / 2014-09-07
 
 * Ensure all files are available in the gem

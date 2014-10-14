@@ -1,5 +1,9 @@
 # Changelog
 
+## Upcoming
+
+* Drop support for Rails 3.2
+
 ## 1.2.2 / 2014-09-09
 
 * Make dependency declaration match set of supported Rails versions

@@ -35,6 +35,10 @@ BASE_CONFIG = {
   }
 }
 
+MIGRATING_CONFIG = BASE_CONFIG.dup.tap do |config|
+  config["test"] = config["test"].merge("migrate" => true)
+end
+
 def create_db_config_without_migrations
   File.open 'config/database.yml', 'w' do |f|
     f.puts YAML.dump(BASE_CONFIG)
@@ -43,7 +47,7 @@ end
 
 def create_db_config_with_migrations
   File.open 'config/database.yml', 'w' do |f|
-    f.puts YAML.dump BASE_CONFIG.merge(test: { migrate: true })
+    f.puts YAML.dump(MIGRATING_CONFIG)
   end
 end
 
@@ -73,6 +77,7 @@ VERSIONS.each do |label, appdir|
         create_db_config_with_migrations
         out = run_tests
         out.must_match(/Creating sqlite :memory: database/)
+        out.wont_match(/initialize_schema_migrations_table/)
       end
     end
   end

@@ -12,10 +12,10 @@ def update_bundle(label)
   raise "Unable to initialize test environment for #{label}"
 end
 
-def run_tests
+def run_tests(command_array = %w(bundle exec rake))
   result = false
   out, err = capture_subprocess_io do
-    result = in_clean_bundler_environment(*%w(bundle exec rake))
+    result = in_clean_bundler_environment(*command_array)
   end
   # If the command failed, make it print any error messages
   err.must_equal "" unless result
@@ -52,18 +52,18 @@ def create_db_config_with_migrations
 end
 
 VERSIONS = [
-  ["Rails 4.0", 'rails40_app'],
-  ["Rails 4.1", 'rails41_app'],
-  ["Rails 4.2", 'rails42_app'],
+  ["Rails 4.0", 'rails40_app', false],
+  ["Rails 4.1", 'rails41_app', false],
+  ["Rails 4.2", 'rails42_app', true],
 ]
 
-VERSIONS.each do |label, appdir|
+VERSIONS.each do |label, appdir, binstubs|
   Dir.chdir "fixtures/#{appdir}" do
     update_bundle label
   end
 
   describe "A #{label} app using memory_test_fix" do
-    it "can run its tests without a real db" do
+    it "can run its tests in-memory without migrations" do
       Dir.chdir "fixtures/#{appdir}" do
         create_db_config_without_migrations
         out = run_tests
@@ -78,6 +78,29 @@ VERSIONS.each do |label, appdir|
         out = run_tests
         out.must_match(/Creating sqlite :memory: database/)
         out.wont_match(/initialize_schema_migrations_table/)
+      end
+    end
+
+    if binstubs
+      describe 'when using spring' do
+        let(:command_array) { %w(bin/rake) }
+        it "can run its tests in-memory without migrations" do
+          Dir.chdir "fixtures/#{appdir}" do
+            create_db_config_without_migrations
+            out = run_tests command_array
+            out.must_match(/Creating sqlite :memory: database/)
+            out.must_match(/initialize_schema_migrations_table/)
+          end
+        end
+
+        it "can run its tests in-memory with migrations" do
+          Dir.chdir "fixtures/#{appdir}" do
+            create_db_config_with_migrations
+            out = run_tests command_array
+            out.must_match(/Creating sqlite :memory: database/)
+            out.wont_match(/initialize_schema_migrations_table/)
+          end
+        end
       end
     end
   end

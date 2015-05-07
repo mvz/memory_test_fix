@@ -2,7 +2,7 @@ require 'test_helper'
 require 'yaml'
 
 def in_clean_bundler_environment(*args)
-  system(*%w(/usr/bin/env RUBYOPT= BUNDLE_BIN_PATH= BUNDLE_GEMFILE=) + args)
+  system(*%w(/usr/bin/env -u RUBYOPT -u BUNDLE_BIN_PATH -u BUNDLE_GEMFILE) + args)
 end
 
 def update_bundle(label)

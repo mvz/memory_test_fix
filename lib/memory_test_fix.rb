@@ -13,3 +13,9 @@ if defined?(Rails)
     end
   end
 end
+
+if defined?(Spring)
+  Spring.after_fork do
+    MemoryTestFix::SchemaLoader.init_schema
+  end
+end

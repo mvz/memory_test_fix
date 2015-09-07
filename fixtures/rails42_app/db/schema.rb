@@ -13,10 +13,10 @@
 
 ActiveRecord::Schema.define(version: 20140830065127) do
 
-  create_table "foos", force: true do |t|
-    t.string   "name",       limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "foos", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

@@ -3,7 +3,7 @@ class CreateFoos < ActiveRecord::Migration
     create_table :foos do |t|
       t.string :name
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 

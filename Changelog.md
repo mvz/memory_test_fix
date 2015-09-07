@@ -1,6 +1,6 @@
 # Changelog
 
-## Upcoming
+## 1.3.0 / 2015-09-07
 
 * Drop support for Rails 3.2
 * Support use of Spring

@@ -3,6 +3,7 @@
 ## Upcoming
 
 * Drop support for Rails 3.2
+* Support use of Spring
 
 ## 1.2.2 / 2014-09-09
 

@@ -7,3 +7,4 @@ fixtures/rails*_app/log/*.log
 fixtures/rails*_app/config/database.yml
 doc/
 .yardoc/
+.bundle/

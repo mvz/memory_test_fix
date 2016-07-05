@@ -55,6 +55,7 @@ VERSIONS = [
   ["Rails 4.0", 'rails40_app', false],
   ["Rails 4.1", 'rails41_app', false],
   ["Rails 4.2", 'rails42_app', true],
+  ["Rails 5.0", 'rails50_app', true],
 ]
 
 VERSIONS.each do |label, appdir, binstubs|

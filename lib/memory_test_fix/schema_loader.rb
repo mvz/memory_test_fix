@@ -1,5 +1,4 @@
 require 'memory_test_fix/schema_file_loader'
-require 'active_support/core_ext/kernel/reporting'
 
 module MemoryTestFix
   # Set up database schema into in-memory database.
@@ -80,9 +79,20 @@ module MemoryTestFix
     end
 
     def load_schema_silently
-      silence_stream STDOUT do
+      silently do
         load_schema
       end
+    end
+
+    def silently
+      tmp_stream = StringIO.new
+
+      original = $stdout
+      $stdout = tmp_stream
+
+      yield
+    ensure
+      $stderr = original
     end
   end
 end

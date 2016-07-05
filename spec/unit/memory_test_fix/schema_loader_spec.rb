@@ -3,6 +3,17 @@ require 'spec_helper'
 require 'memory_test_fix/schema_loader'
 
 RSpec.describe MemoryTestFix::SchemaLoader do
+  def silently
+    tmp_stream = StringIO.new
+
+    original = $stdout
+    $stdout = tmp_stream
+
+    yield
+  ensure
+    $stderr = original
+  end
+
   describe '#init_schema' do
     let(:migrator) { double(:migrator) }
     let(:loader) { double(:loader) }
@@ -10,7 +21,7 @@ RSpec.describe MemoryTestFix::SchemaLoader do
     let(:schema_loader) { MemoryTestFix::SchemaLoader.new options }
 
     before do
-      allow(loader).to receive(:load_schema)
+      allow(loader).to receive(:load_schema) { puts 'loading schema' }
       allow(migrator).to receive(:up)
     end
 
@@ -33,11 +44,16 @@ RSpec.describe MemoryTestFix::SchemaLoader do
 
       it "informs the user it is creating an in-memory database" do
         expect { schema_loader.init_schema }.
-          to output("Creating sqlite :memory: database\n").to_stdout
+          to output(/Creating sqlite :memory: database/).to_stdout
+      end
+
+      it "prints the output from the loader" do
+        expect { schema_loader.init_schema }.
+          to output(/loading schema/).to_stdout
       end
 
       it "tells the loader to load the schema" do
-        silence_stream(STDOUT) { schema_loader.init_schema }
+        silently { schema_loader.init_schema }
         expect(loader).to have_received :load_schema
       end
 
@@ -45,8 +61,22 @@ RSpec.describe MemoryTestFix::SchemaLoader do
         let(:config) { base_config.merge(migrate: true) }
 
         it "tells the migrator to run the migrations" do
-          silence_stream(STDOUT) { schema_loader.init_schema }
+          silently { schema_loader.init_schema }
           expect(migrator).to have_received :up
+        end
+      end
+
+      context "when running in quietly" do
+        let(:config) { base_config.merge(verbosity: 'quiet') }
+
+        it "informs the user it is creating an in-memory database" do
+          expect { schema_loader.init_schema }.
+            to output(/Creating sqlite :memory: database/).to_stdout
+        end
+
+        it "does not print the output from the loader" do
+          expect { schema_loader.init_schema }.
+            not_to output(/loading schema/).to_stdout
         end
       end
 

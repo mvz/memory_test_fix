@@ -1,7 +1,5 @@
 source 'https://rubygems.org'
 
-ruby RUBY_VERSION
-
 gemspec
 
 if RUBY_VERSION < '2.2.0'

@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.4.0 / 2016-07-06
+
+* Add support for Rails 5.0
+* Drop support for Rails 4.x
+
 ## 1.3.0 / 2015-09-07
 
 * Drop support for Rails 3.2

@@ -15,8 +15,7 @@ Add the gem to your bundle by adding
 
     gem 'memory_test_fix'
 
-to your `Gemfile`
-
+to your `Gemfile`.
 
 In your database.yml, use:
 
@@ -44,8 +43,11 @@ You can also use this with other (testing) environments, not just 'test'.
 
 ## Rails Versions
 
-This gem is compatible with Rails 4.1, 4.2 and 5.0. If you're using an older
-version of Rails, your first priority should be upgrading Rails.
+In general, Bundler should pick a compatible version for you if you don't
+specify one in your `Gemfile`.
+
+That said, this gem is compatible with Rails 4.1, 4.2 and 5.0. If you're using
+an older version of Rails, your first priority should be upgrading Rails.
 
 If that's not an option, you can use version 1.3.0 of this gem with Rails 4.0.
 If you're using Rails 3.2, you can use version 1.2.2. If you're using Rails 3.1

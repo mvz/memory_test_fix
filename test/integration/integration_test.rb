@@ -22,6 +22,12 @@ def run_tests(command_array = %w(bundle exec rake))
   out
 end
 
+def stop_spring
+  capture_subprocess_io do
+    in_clean_bundler_environment(*%w(bin/spring stop))
+  end
+end
+
 BASE_CONFIG = {
   "development" =>  {
     "adapter" =>  'sqlite3',
@@ -86,6 +92,7 @@ VERSIONS.each do |label, appdir, binstubs|
         let(:command_array) { %w(bin/rake) }
         it "can run its tests in-memory without migrations" do
           Dir.chdir "fixtures/#{appdir}" do
+            stop_spring
             create_db_config_without_migrations
             out = run_tests command_array
             out.must_match(/Creating sqlite :memory: database/)
@@ -95,6 +102,7 @@ VERSIONS.each do |label, appdir, binstubs|
 
         it "can run its tests in-memory with migrations" do
           Dir.chdir "fixtures/#{appdir}" do
+            stop_spring
             create_db_config_with_migrations
             out = run_tests command_array
             out.must_match(/Creating sqlite :memory: database/)

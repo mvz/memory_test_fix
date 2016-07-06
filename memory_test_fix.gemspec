@@ -29,8 +29,8 @@ Gem::Specification.new do |spec|
   spec.rdoc_options = ["--main", "README.md"]
   spec.extra_rdoc_files = ["README.md"]
 
-  spec.add_runtime_dependency("railties", ">= 4.1.0", "< 5.1.0")
-  spec.add_runtime_dependency("activerecord", ">= 4.1.0", "< 5.1.0")
+  spec.add_runtime_dependency("railties", "~> 5.0.0")
+  spec.add_runtime_dependency("activerecord", "~> 5.0.0")
   spec.add_development_dependency("rake", "~> 11.1")
   spec.add_development_dependency("minitest", "~> 5.2")
   spec.add_development_dependency("rspec", "~> 3.1")

@@ -58,12 +58,10 @@ def create_db_config_with_migrations
 end
 
 VERSIONS = [
-  ["Rails 4.1", 'rails41_app', false],
-  ["Rails 4.2", 'rails42_app', true],
-  ["Rails 5.0", 'rails50_app', true],
+  ["Rails 5.0", 'rails50_app'],
 ]
 
-VERSIONS.each do |label, appdir, binstubs|
+VERSIONS.each do |label, appdir|
   Dir.chdir "fixtures/#{appdir}" do
     update_bundle label
   end
@@ -87,27 +85,25 @@ VERSIONS.each do |label, appdir, binstubs|
       end
     end
 
-    if binstubs
-      describe 'when using spring' do
-        let(:command_array) { %w(bin/rake) }
-        it "can run its tests in-memory without migrations" do
-          Dir.chdir "fixtures/#{appdir}" do
-            stop_spring
-            create_db_config_without_migrations
-            out = run_tests command_array
-            out.must_match(/Creating sqlite :memory: database/)
-            out.must_match(/initialize_schema_migrations_table/)
-          end
+    describe 'when using spring' do
+      let(:command_array) { %w(bin/rake) }
+      it "can run its tests in-memory without migrations" do
+        Dir.chdir "fixtures/#{appdir}" do
+          stop_spring
+          create_db_config_without_migrations
+          out = run_tests command_array
+          out.must_match(/Creating sqlite :memory: database/)
+          out.must_match(/initialize_schema_migrations_table/)
         end
+      end
 
-        it "can run its tests in-memory with migrations" do
-          Dir.chdir "fixtures/#{appdir}" do
-            stop_spring
-            create_db_config_with_migrations
-            out = run_tests command_array
-            out.must_match(/Creating sqlite :memory: database/)
-            out.wont_match(/initialize_schema_migrations_table/)
-          end
+      it "can run its tests in-memory with migrations" do
+        Dir.chdir "fixtures/#{appdir}" do
+          stop_spring
+          create_db_config_with_migrations
+          out = run_tests command_array
+          out.must_match(/Creating sqlite :memory: database/)
+          out.wont_match(/initialize_schema_migrations_table/)
         end
       end
     end

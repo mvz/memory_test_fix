@@ -7,8 +7,6 @@ require 'rake/clean'
 CLEAN.include 'fixtures/**/Gemfile.lock'
 CLOBBER.include 'pkg'
 
-Bundler::GemHelper.install_tasks
-
 desc 'Default: run tests.'
 task default: :test
 

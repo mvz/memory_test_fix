@@ -51,13 +51,13 @@ def create_db_config_with_migrations
   end
 end
 
-VERSIONS = [
+versions = [
   ["Rails 4.1", 'rails41_app', false],
   ["Rails 4.2", 'rails42_app', true],
-  ["Rails 5.0", 'rails50_app', true],
 ]
+versions << ["Rails 5.0", 'rails50_app', true] if RUBY_VERSION >= '2.2.2'
 
-VERSIONS.each do |label, appdir, binstubs|
+versions.each do |label, appdir, binstubs|
   Dir.chdir "fixtures/#{appdir}" do
     update_bundle label
   end

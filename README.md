@@ -44,11 +44,13 @@ You can also use this with other (testing) environments, not just 'test'.
 
 ## Rails Versions
 
-This gem is compatible with Rails 4 and 5. If you're using an older version of
-Rails, your first priority should be upgrading Rails. If that's not an option,
-you can use version 1.2.2 of this gem with Rails 3.2. If you're using Rails 3.1
-or 3.0, use version 1.1.0 of this gem. If you're using Rails 2.3, use version
-0.2.2. If you're using an even older version of Rails, use version 0.1.3.
+This gem is compatible with Rails 4.1, 4.2 and 5.0. If you're using an older
+version of Rails, your first priority should be upgrading Rails.
+
+If that's not an option, you can use version 1.3.0 of this gem with Rails 4.0.
+If you're using Rails 3.2, you can use version 1.2.2. If you're using Rails 3.1
+or 3.0, use version 1.1.0. If you're using Rails 2.3, use version 0.2.2. If
+you're using an even older version of Rails, use version 0.1.3.
 
 ## Authors
 

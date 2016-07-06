@@ -46,13 +46,16 @@ You can also use this with other (testing) environments, not just 'test'.
 In general, Bundler should pick a compatible version for you if you don't
 specify one in your `Gemfile`.
 
-That said, this gem is compatible with Rails 4.1, 4.2 and 5.0. If you're using
-an older version of Rails, your first priority should be upgrading Rails.
+That said, the latest version of this gem is compatible with Rails 5.0.
+If you're still on Rails 4, you can use version 1.3.0. Unfortunately, the hard
+requirement of Ruby 2.2 or above for Rails 5 means `memory_test_fix` cannot
+support Rails 4 and 5 at the same time.
 
-If that's not an option, you can use version 1.3.0 of this gem with Rails 4.0.
-If you're using Rails 3.2, you can use version 1.2.2. If you're using Rails 3.1
-or 3.0, use version 1.1.0. If you're using Rails 2.3, use version 0.2.2. If
-you're using an even older version of Rails, use version 0.1.3.
+If you're using a version of Rails older than 4, your first priority should be
+upgrading Rails. If that's really not an option, you can use version 1.2.2 of
+this gem with Rails 3.2. If you're using Rails 3.1 or 3.0, use version 1.1.0.
+If you're using Rails 2.3, use version 0.2.2. If you're using an even older
+version of Rails, use version 0.1.3.
 
 ## Authors
 

@@ -31,7 +31,7 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency("railties", "~> 5.0.0")
   spec.add_runtime_dependency("activerecord", "~> 5.0.0")
-  spec.add_development_dependency("rake", "~> 11.1")
+  spec.add_development_dependency("rake", "~> 12.0")
   spec.add_development_dependency("minitest", "~> 5.2")
   spec.add_development_dependency("rspec", "~> 3.1")
 end

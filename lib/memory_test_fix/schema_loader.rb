@@ -92,7 +92,7 @@ module MemoryTestFix
 
       yield
     ensure
-      $stderr = original
+      $stdout = original
     end
   end
 end

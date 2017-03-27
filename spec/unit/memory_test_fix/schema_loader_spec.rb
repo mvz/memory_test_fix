@@ -11,7 +11,7 @@ RSpec.describe MemoryTestFix::SchemaLoader do
 
     yield
   ensure
-    $stderr = original
+    $stdout = original
   end
 
   describe '#init_schema' do

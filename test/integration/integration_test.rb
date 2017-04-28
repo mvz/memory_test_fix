@@ -59,6 +59,7 @@ end
 
 VERSIONS = [
   ["Rails 5.0", 'rails50_app'],
+  ["Rails 5.1", 'rails51_app'],
 ]
 
 VERSIONS.each do |label, appdir|
@@ -72,7 +73,7 @@ VERSIONS.each do |label, appdir|
         create_db_config_without_migrations
         out = run_tests
         out.must_match(/Creating sqlite :memory: database/)
-        out.must_match(/initialize_schema_migrations_table/)
+        out.wont_match(/migrating/)
       end
     end
 
@@ -81,7 +82,7 @@ VERSIONS.each do |label, appdir|
         create_db_config_with_migrations
         out = run_tests
         out.must_match(/Creating sqlite :memory: database/)
-        out.wont_match(/initialize_schema_migrations_table/)
+        out.must_match(/migrating/)
       end
     end
 
@@ -93,7 +94,7 @@ VERSIONS.each do |label, appdir|
           create_db_config_without_migrations
           out = run_tests command_array
           out.must_match(/Creating sqlite :memory: database/)
-          out.must_match(/initialize_schema_migrations_table/)
+          out.wont_match(/migrating/)
         end
       end
 
@@ -103,7 +104,7 @@ VERSIONS.each do |label, appdir|
           create_db_config_with_migrations
           out = run_tests command_array
           out.must_match(/Creating sqlite :memory: database/)
-          out.wont_match(/initialize_schema_migrations_table/)
+          out.must_match(/migrating/)
         end
       end
     end

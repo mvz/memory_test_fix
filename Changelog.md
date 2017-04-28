@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.4.2 / 2017-04-28
+
+* Update dependencies to allow use with Rails 5.1
+
 ## 1.4.1 / 2017-03-27
 
 * Stop silent schema loading dropping STDOUT completely

@@ -1,18 +1,32 @@
 AllCops:
   Exclude:
     - 'fixtures/**/*'
+  TargetRubyVersion: 2.2
 
 # Dot at end of line makes it clearer that the line is not done
-Style/DotPosition:
+Layout/DotPosition:
   EnforcedStyle: trailing
 
+# Test and spec describe blocks can be any size.
+# Gem specification can be any size.
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+    - 'test/**/*'
+    - 'memory_test_fix.gemspec'
+
 # Require lines to fit in pull requests.
-Style/LineLength:
+Metrics/LineLength:
   Max: 92
 
 # Prefer parentheses in method definitions
 Style/MethodDefParentheses:
   EnforcedStyle: require_parentheses
+
+# Use older RuboCop default
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    '%w': ()
 
 # Always use raise to raise exceptions
 Style/SignalException:
@@ -23,6 +37,5 @@ Style/StringLiterals:
   Enabled: false
 
 # Allow semantic choice of trailing comma
-Style/TrailingComma:
+Style/TrailingCommaInLiteral:
   Enabled: false
-

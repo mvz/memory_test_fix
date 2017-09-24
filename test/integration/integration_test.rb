@@ -6,9 +6,9 @@ def in_clean_bundler_environment(*args)
 end
 
 def update_bundle(label)
-  return if in_clean_bundler_environment(*%w(bundle update --quiet --local))
+  return if in_clean_bundler_environment('bundle', 'update', '--quiet', '--local')
   puts "Starting remote update of the bundle for #{label}"
-  return if in_clean_bundler_environment(*%w(bundle update))
+  return if in_clean_bundler_environment('bundle', 'update')
   raise "Unable to initialize test environment for #{label}"
 end
 
@@ -24,7 +24,7 @@ end
 
 def stop_spring
   capture_subprocess_io do
-    in_clean_bundler_environment(*%w(bin/spring stop))
+    in_clean_bundler_environment('bin/spring', 'stop')
   end
 end
 
@@ -39,7 +39,7 @@ BASE_CONFIG = {
     "adapter" =>  'sqlite3',
     "database" =>  ':memory:'
   }
-}
+}.freeze
 
 MIGRATING_CONFIG = BASE_CONFIG.dup.tap do |config|
   config["test"] = config["test"].merge("migrate" => true)
@@ -60,7 +60,7 @@ end
 VERSIONS = [
   ["Rails 5.0", 'rails50_app'],
   ["Rails 5.1", 'rails51_app'],
-]
+].freeze
 
 VERSIONS.each do |label, appdir|
   Dir.chdir "fixtures/#{appdir}" do

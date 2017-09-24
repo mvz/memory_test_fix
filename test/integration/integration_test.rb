@@ -39,7 +39,7 @@ BASE_CONFIG = {
     "adapter" =>  'sqlite3',
     "database" =>  ':memory:'
   }
-}
+}.freeze
 
 MIGRATING_CONFIG = BASE_CONFIG.dup.tap do |config|
   config["test"] = config["test"].merge("migrate" => true)
@@ -60,7 +60,7 @@ end
 VERSIONS = [
   ["Rails 5.0", 'rails50_app'],
   ["Rails 5.1", 'rails51_app'],
-]
+].freeze
 
 VERSIONS.each do |label, appdir|
   Dir.chdir "fixtures/#{appdir}" do

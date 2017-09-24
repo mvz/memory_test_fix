@@ -19,6 +19,7 @@ Gem::Specification.new do |spec|
     Makes use of SQLite3 in-memory database possible for your
     Rails tests by preloading the schema.
   END
+  spec.required_ruby_version = '>= 2.2.0'
 
   spec.files = Dir["{lib,test,spec,fixtures}/**/*",
                    "*.md",

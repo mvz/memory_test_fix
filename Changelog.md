@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.5.1 / 2018-02-14
+
+* Fix support for Rails 5.2: Handle Rails 5.2's repeated connection
+  establishment.
+
 ## 1.5.0 / 2018-02-14
 
 * Add support for Rails 5.2

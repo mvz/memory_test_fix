@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.5.0 / 2018-02-14
+
+* Add support for Rails 5.2
+
 ## 1.4.2 / 2017-04-28
 
 * Update dependencies to allow use with Rails 5.1

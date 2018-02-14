@@ -34,7 +34,3 @@ Style/PercentLiteralDelimiters:
 # Always use raise to raise exceptions
 Style/SignalException:
   EnforcedStyle: only_raise
-
-# Allow semantic choice of trailing comma
-Style/TrailingCommaInLiteral:
-  Enabled: false

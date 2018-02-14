@@ -14,3 +14,7 @@ matrix:
     - rvm: jruby-head
     - rvm: ruby-head
     - rvm: ruby-head-clang
+
+branches:
+  only:
+    - master

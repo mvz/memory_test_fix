@@ -75,6 +75,7 @@ VERSIONS.each do |label, appdir|
         out = run_tests
         out.must_match(/Creating sqlite :memory: database/)
         out.wont_match(/migrating/)
+        out.must_match(/2 runs, 2 assertions, 0 failures, 0 errors, 0 skips/)
       end
     end
 
@@ -84,6 +85,7 @@ VERSIONS.each do |label, appdir|
         out = run_tests
         out.must_match(/Creating sqlite :memory: database/)
         out.must_match(/migrating/)
+        out.must_match(/2 runs, 2 assertions, 0 failures, 0 errors, 0 skips/)
       end
     end
 
@@ -96,6 +98,7 @@ VERSIONS.each do |label, appdir|
           out = run_tests command_array
           out.must_match(/Creating sqlite :memory: database/)
           out.wont_match(/migrating/)
+          out.must_match(/2 runs, 2 assertions, 0 failures, 0 errors, 0 skips/)
         end
       end
 
@@ -106,6 +109,7 @@ VERSIONS.each do |label, appdir|
           out = run_tests command_array
           out.must_match(/Creating sqlite :memory: database/)
           out.must_match(/migrating/)
+          out.must_match(/2 runs, 2 assertions, 0 failures, 0 errors, 0 skips/)
         end
       end
     end

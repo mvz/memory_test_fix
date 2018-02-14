@@ -1,4 +1,5 @@
 require 'memory_test_fix/schema_file_loader'
+require 'active_record'
 
 module MemoryTestFix
   # Set up database schema into in-memory database.

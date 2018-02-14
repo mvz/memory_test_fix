@@ -15,10 +15,11 @@ RSpec.describe MemoryTestFix::SchemaLoader do
   end
 
   describe '#init_schema' do
-    let(:migrator) { double(:migrator) }
-    let(:loader) { double(:loader) }
+    let(:migrator) { class_double(ActiveRecord::Migrator) }
+    let(:loader) { class_double(MemoryTestFix::SchemaFileLoader) }
     let(:options) { { configuration: config, migrator: migrator, loader: loader } }
-    let(:schema_loader) { MemoryTestFix::SchemaLoader.new options }
+    let(:schema_loader) { described_class.new options }
+    let(:base_config) { { database: ':memory:', adapter: 'sqlite3' } }
 
     before do
       allow(loader).to receive(:load_schema) { puts 'loading schema' }
@@ -29,17 +30,16 @@ RSpec.describe MemoryTestFix::SchemaLoader do
       let(:config) { { database: 'some/file.sqlite3', adapter: 'sqlite3' } }
 
       it "outputs nothing" do
-        expect { schema_loader.init_schema }.to_not output.to_stdout
+        expect { schema_loader.init_schema }.not_to output.to_stdout
       end
 
       it "does not load anything" do
         schema_loader.init_schema
-        expect(loader).to_not have_received :load_schema
+        expect(loader).not_to have_received :load_schema
       end
     end
 
-    context 'when an in-memory database is configured' do
-      let(:base_config) { { database: ':memory:', adapter: 'sqlite3' } }
+    context 'when configured not to use migrations' do
       let(:config) { base_config }
 
       it "informs the user it is creating an in-memory database" do
@@ -56,36 +56,46 @@ RSpec.describe MemoryTestFix::SchemaLoader do
         silently { schema_loader.init_schema }
         expect(loader).to have_received :load_schema
       end
+    end
 
-      context "when configured to use migrations" do
-        let(:config) { base_config.merge(migrate: true) }
+    context "when configured to use migrations" do
+      let(:config) { base_config.merge(migrate: true) }
 
-        it "tells the migrator to run the migrations" do
-          silently { schema_loader.init_schema }
-          expect(migrator).to have_received :up
-        end
+      it "informs the user it is creating an in-memory database" do
+        expect { schema_loader.init_schema }.
+          to output(/Creating sqlite :memory: database/).to_stdout
       end
 
-      context "when running in quietly" do
-        let(:config) { base_config.merge(verbosity: 'quiet') }
-
-        it "informs the user it is creating an in-memory database" do
-          expect { schema_loader.init_schema }.
-            to output(/Creating sqlite :memory: database/).to_stdout
-        end
-
-        it "does not print the output from the loader" do
-          expect { schema_loader.init_schema }.
-            not_to output(/loading schema/).to_stdout
-        end
+      it "does not print 'loading schema'" do
+        expect { schema_loader.init_schema }.
+          not_to output(/loading schema/).to_stdout
       end
 
-      context "when running in silence" do
-        let(:config) { base_config.merge(verbosity: 'silent') }
+      it "tells the migrator to run the migrations" do
+        silently { schema_loader.init_schema }
+        expect(migrator).to have_received :up
+      end
+    end
 
-        it "outputs nothing" do
-          expect { schema_loader.init_schema }.to_not output.to_stdout
-        end
+    context "when running in quietly" do
+      let(:config) { base_config.merge(verbosity: 'quiet') }
+
+      it "informs the user it is creating an in-memory database" do
+        expect { schema_loader.init_schema }.
+          to output(/Creating sqlite :memory: database/).to_stdout
+      end
+
+      it "does not print the output from the loader" do
+        expect { schema_loader.init_schema }.
+          not_to output(/loading schema/).to_stdout
+      end
+    end
+
+    context "when running in silence" do
+      let(:config) { base_config.merge(verbosity: 'silent') }
+
+      it "outputs nothing" do
+        expect { schema_loader.init_schema }.not_to output.to_stdout
       end
     end
   end

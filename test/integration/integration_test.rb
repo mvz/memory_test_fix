@@ -18,7 +18,7 @@ def run_tests(command_array = %w(bundle exec rake))
     result = in_clean_bundler_environment(*command_array)
   end
   # If the command failed, make it print any error messages
-  err.must_equal "" unless result
+  err.must_equal '' unless result
   out
 end
 
@@ -29,20 +29,20 @@ def stop_spring
 end
 
 BASE_CONFIG = {
-  "development" =>  {
-    "adapter" =>  'sqlite3',
-    "pool" =>  5,
-    "timeout" =>  5000,
-    "database" =>  'db/development.sqlite3'
+  'development' =>  {
+    'adapter' =>  'sqlite3',
+    'pool' =>  5,
+    'timeout' =>  5000,
+    'database' =>  'db/development.sqlite3'
   },
-  "test" =>  {
-    "adapter" =>  'sqlite3',
-    "database" =>  ':memory:'
+  'test' =>  {
+    'adapter' =>  'sqlite3',
+    'database' =>  ':memory:'
   }
 }.freeze
 
 MIGRATING_CONFIG = BASE_CONFIG.dup.tap do |config|
-  config["test"] = config["test"].merge("migrate" => true)
+  config['test'] = config['test'].merge('migrate' => true)
 end
 
 def create_db_config_without_migrations
@@ -58,9 +58,9 @@ def create_db_config_with_migrations
 end
 
 VERSIONS = [
-  ["Rails 5.0", 'rails50_app'],
-  ["Rails 5.1", 'rails51_app'],
-  ["Rails 5.2", 'rails52_app'],
+  ['Rails 5.0', 'rails50_app'],
+  ['Rails 5.1', 'rails51_app'],
+  ['Rails 5.2', 'rails52_app'],
 ].freeze
 
 VERSIONS.each do |label, appdir|
@@ -69,7 +69,7 @@ VERSIONS.each do |label, appdir|
   end
 
   describe "A #{label} app using memory_test_fix" do
-    it "can run its tests in-memory without migrations" do
+    it 'can run its tests in-memory without migrations' do
       Dir.chdir "fixtures/#{appdir}" do
         create_db_config_without_migrations
         out = run_tests
@@ -78,7 +78,7 @@ VERSIONS.each do |label, appdir|
       end
     end
 
-    it "can run its tests in-memory with migrations" do
+    it 'can run its tests in-memory with migrations' do
       Dir.chdir "fixtures/#{appdir}" do
         create_db_config_with_migrations
         out = run_tests
@@ -89,7 +89,7 @@ VERSIONS.each do |label, appdir|
 
     describe 'when using spring' do
       let(:command_array) { %w(bin/rake) }
-      it "can run its tests in-memory without migrations" do
+      it 'can run its tests in-memory without migrations' do
         Dir.chdir "fixtures/#{appdir}" do
           stop_spring
           create_db_config_without_migrations
@@ -99,7 +99,7 @@ VERSIONS.each do |label, appdir|
         end
       end
 
-      it "can run its tests in-memory with migrations" do
+      it 'can run its tests in-memory with migrations' do
         Dir.chdir "fixtures/#{appdir}" do
           stop_spring
           create_db_config_with_migrations

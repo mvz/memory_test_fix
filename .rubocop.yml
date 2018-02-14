@@ -35,10 +35,6 @@ Style/PercentLiteralDelimiters:
 Style/SignalException:
   EnforcedStyle: only_raise
 
-# Allow non-interpolated strings with double quotes
-Style/StringLiterals:
-  Enabled: false
-
 # Allow semantic choice of trailing comma
 Style/TrailingCommaInLiteral:
   Enabled: false

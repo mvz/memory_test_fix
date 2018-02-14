@@ -56,11 +56,11 @@ module MemoryTestFix
     end
 
     def silent?
-      verbosity == "silent"
+      verbosity == 'silent'
     end
 
     def quiet?
-      verbosity == "quiet"
+      verbosity == 'quiet'
     end
 
     def migrate
@@ -68,7 +68,7 @@ module MemoryTestFix
     end
 
     def inform_using_in_memory
-      puts "Creating sqlite :memory: database"
+      puts 'Creating sqlite :memory: database'
     end
 
     def load_schema

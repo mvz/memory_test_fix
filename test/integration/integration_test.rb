@@ -60,6 +60,7 @@ end
 VERSIONS = [
   ["Rails 5.0", 'rails50_app'],
   ["Rails 5.1", 'rails51_app'],
+  ["Rails 5.2", 'rails52_app'],
 ].freeze
 
 VERSIONS.each do |label, appdir|

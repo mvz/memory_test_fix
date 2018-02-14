@@ -1,4 +1,5 @@
 require 'memory_test_fix/schema_file_loader'
+require 'active_record'
 
 module MemoryTestFix
   # Set up database schema into in-memory database.
@@ -72,7 +73,11 @@ module MemoryTestFix
 
     def load_schema
       if migrate
-        @migrator.up('db/migrate')
+        if @migrator.respond_to? :up
+          @migrator.up('db/migrate')
+        else
+          ActiveRecord::Base.connection.migration_context.up
+        end
       else
         @loader.load_schema
       end

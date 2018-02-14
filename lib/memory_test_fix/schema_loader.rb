@@ -72,7 +72,11 @@ module MemoryTestFix
 
     def load_schema
       if migrate
-        @migrator.up('db/migrate')
+        if @migrator.respond_to? :up
+          @migrator.up('db/migrate')
+        else
+          ActiveRecord::Base.connection.migration_context.up
+        end
       else
         @loader.load_schema
       end

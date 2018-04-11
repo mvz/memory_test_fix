@@ -15,7 +15,14 @@ RSpec.describe MemoryTestFix::SchemaLoader do
   end
 
   describe '#init_schema' do
-    let(:migrator) { class_double(ActiveRecord::Migrator) }
+    let(:migrator) do
+      if ActiveRecord::Migrator.respond_to? :up
+        class_double(ActiveRecord::Migrator)
+      else
+        instance_double(ActiveRecord::MigrationContext)
+      end
+    end
+
     let(:loader) { class_double(MemoryTestFix::SchemaFileLoader) }
     let(:options) { { configuration: config, migrator: migrator, loader: loader } }
     let(:schema_loader) { described_class.new options }
@@ -24,6 +31,11 @@ RSpec.describe MemoryTestFix::SchemaLoader do
     before do
       allow(loader).to receive(:load_schema) { puts 'loading schema' }
       allow(migrator).to receive(:up)
+      unless ActiveRecord::Migrator.respond_to? :up
+        connection = instance_double(ActiveRecord::ConnectionAdapters::AbstractAdapter)
+        allow(ActiveRecord::Base).to receive(:connection).and_return connection
+        allow(connection).to receive(:migration_context).and_return migrator
+      end
     end
 
     context 'when no in-memory database is configured' do

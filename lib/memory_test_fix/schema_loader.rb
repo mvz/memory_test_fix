@@ -18,7 +18,7 @@ module MemoryTestFix
     # @api private
     def initialize(options = {})
       @configuration = options[:configuration] || ActiveRecord::Base.connection_config
-      @migrator = options[:migrator] || ActiveRecord::Migrator
+      @migrator = options[:migrator] || default_migrator
       @loader = options[:loader] || SchemaFileLoader
     end
 
@@ -73,10 +73,10 @@ module MemoryTestFix
 
     def load_schema
       if migrate
-        if @migrator.respond_to? :up
+        if @migrator.method(:up).arity == -2
           @migrator.up('db/migrate')
         else
-          ActiveRecord::Base.connection.migration_context.up
+          @migrator.up
         end
       else
         @loader.load_schema
@@ -86,6 +86,14 @@ module MemoryTestFix
     def load_schema_silently
       silently do
         load_schema
+      end
+    end
+
+    def default_migrator
+      if ActiveRecord::Migrator.respond_to? :up
+        ActiveRecord::Migrator
+      else
+        ActiveRecord::Base.connection.migration_context
       end
     end
 

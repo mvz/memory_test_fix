@@ -18,7 +18,7 @@ module MemoryTestFix
     # @api private
     def initialize(options = {})
       @configuration = options[:configuration] || ActiveRecord::Base.connection_config
-      @migrator = options[:migrator] || ActiveRecord::Migrator
+      @migrator = options[:migrator] || default_migrator
       @loader = options[:loader] || SchemaFileLoader
     end
 
@@ -73,10 +73,10 @@ module MemoryTestFix
 
     def load_schema
       if migrate
-        if @migrator.respond_to? :up
-          @migrator.up('db/migrate')
+        if rails_52?
+          @migrator.up
         else
-          ActiveRecord::Base.connection.migration_context.up
+          @migrator.up('db/migrate')
         end
       else
         @loader.load_schema
@@ -87,6 +87,18 @@ module MemoryTestFix
       silently do
         load_schema
       end
+    end
+
+    def default_migrator
+      if rails_52?
+        ActiveRecord::Base.connection.migration_context
+      else
+        ActiveRecord::Migrator
+      end
+    end
+
+    def rails_52?
+      ActiveRecord.version.segments[0..1] == [5, 2]
     end
 
     def silently

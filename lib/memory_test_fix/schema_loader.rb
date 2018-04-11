@@ -73,10 +73,10 @@ module MemoryTestFix
 
     def load_schema
       if migrate
-        if @migrator.method(:up).arity == -2
-          @migrator.up('db/migrate')
-        else
+        if rails_52?
           @migrator.up
+        else
+          @migrator.up('db/migrate')
         end
       else
         @loader.load_schema
@@ -90,11 +90,15 @@ module MemoryTestFix
     end
 
     def default_migrator
-      if ActiveRecord::Migrator.respond_to? :up
-        ActiveRecord::Migrator
-      else
+      if rails_52?
         ActiveRecord::Base.connection.migration_context
+      else
+        ActiveRecord::Migrator
       end
+    end
+
+    def rails_52?
+      ActiveRecord.version.segments[0..1] == [5, 2]
     end
 
     def silently

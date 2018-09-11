@@ -7,8 +7,10 @@ end
 
 def update_bundle(label)
   return if in_clean_bundler_environment('bundle', 'update', '--quiet', '--local')
+
   puts "Starting remote update of the bundle for #{label}"
   return if in_clean_bundler_environment('bundle', 'update')
+
   raise "Unable to initialize test environment for #{label}"
 end
 

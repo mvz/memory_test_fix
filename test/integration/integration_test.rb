@@ -31,15 +31,15 @@ def stop_spring
 end
 
 BASE_CONFIG = {
-  'development' =>  {
-    'adapter' =>  'sqlite3',
-    'pool' =>  5,
-    'timeout' =>  5000,
-    'database' =>  'db/development.sqlite3'
+  'development' => {
+    'adapter' => 'sqlite3',
+    'pool' => 5,
+    'timeout' => 5000,
+    'database' => 'db/development.sqlite3'
   },
-  'test' =>  {
-    'adapter' =>  'sqlite3',
-    'database' =>  ':memory:'
+  'test' => {
+    'adapter' => 'sqlite3',
+    'database' => ':memory:'
   }
 }.freeze
 

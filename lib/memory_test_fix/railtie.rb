@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MemoryTestFix
   # Set up for use with Rails
   class Railtie < ::Rails::Railtie

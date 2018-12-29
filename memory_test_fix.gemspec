@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Gem::Specification.new do |spec|
   spec.name = 'memory_test_fix'
   spec.version = '1.5.1'
@@ -19,7 +21,7 @@ Gem::Specification.new do |spec|
     Makes use of SQLite3 in-memory database possible for your
     Rails tests by preloading the schema.
   TEXT
-  spec.required_ruby_version = '>= 2.2.0'
+  spec.required_ruby_version = '>= 2.3.0'
 
   spec.files = Dir['{lib,test,spec,fixtures}/**/*',
                    '*.md',

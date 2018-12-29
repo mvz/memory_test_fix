@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'memory_test_fix/schema_file_loader'
 require 'active_record'
 

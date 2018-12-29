@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MemoryTestFix
   # Load Rails schema file into in-memory database.
   # @api private

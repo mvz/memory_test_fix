@@ -1,5 +1,7 @@
 # MemoryTestFix
 
+**This project is no longer being maintained.**
+
 A simple fix to run your Rails tests with sqlite. From the
 [example by Chris Roos](http://blog.seagul.co.uk/articles/2006/02/08/in-memory-sqlite-database-for-rails-testing).
 
